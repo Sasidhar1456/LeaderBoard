@@ -92,7 +92,7 @@ function App() {
         },
       }}
         limit={1} /></div>
-      <div className='w-[100vw] p-[1rem] flex flex-col items-center border border-blue gap-14'>
+      <div className='w-[100vw] p-[1rem] flex flex-col items-center  border-blue gap-14'>
         <h1 className='text-2xl md:text-4xl'>🎯 Leaderboard Challenge</h1>
 
         <div className='flex flex-col md:flex-row justify-between gap-10  '>
