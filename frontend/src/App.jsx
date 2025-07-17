@@ -40,26 +40,24 @@ function App() {
     }
 
     await addUser(name);
-    toast('User '+ name + " added successfully",
-        {
-          icon: '✅',
-          style: {
-            borderRadius: '10px',
-            background: '#333',
-            color: '#fff',
-          },
-        }
-      );
+    toast('User ' + name + " added successfully",
+      {
+        icon: '✅',
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }
+    );
     fetchAll();
   };
 
   const handleClaim = async () => {
-    if (!selectedUser) return;
-    const res = await claimPoints(selectedUser);
-    setLastClaimed(res.data.points);
-    toast(lastClaimed + ' points awarded!',
+    if (!selectedUser) {
+      toast('Select a valid User',
         {
-          icon: '🎉',
+          icon: '❌',
           style: {
             borderRadius: '10px',
             background: '#333',
@@ -67,12 +65,33 @@ function App() {
           },
         }
       );
+      return;
+    };
+    const res = await claimPoints(selectedUser);
+    setLastClaimed(res.data.points);
+    toast(lastClaimed + ' points awarded!',
+      {
+        icon: '🎉',
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }
+    );
     fetchAll();
   };
 
   return (
     <div className='w-[100%] accent-[#242424] '>
-      <div><Toaster position="top-center" reverseOrder={false} /></div>
+      <div><Toaster position="top-center" reverseOrder={false} toastOptions={{
+        duration: 2000, // auto-close after 3s
+        style: {
+          background: '#333',
+          color: '#fff',
+        },
+      }}
+        limit={1} /></div>
       <div className='w-[100vw] p-[1rem] flex flex-col items-center border border-blue gap-14'>
         <h1 className='text-2xl md:text-4xl'>🎯 Leaderboard Challenge</h1>
 
